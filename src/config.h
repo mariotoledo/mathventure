@@ -1,0 +1,3 @@
+#define NUMBER_OF_FRAMES 30.0
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480

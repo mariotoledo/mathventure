@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
-
-#define NUMBER_OF_FRAMES 30.0
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#include "config.h"
 
 int main()
 {

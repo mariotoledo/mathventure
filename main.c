@@ -2,6 +2,10 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 
+#define NUMBER_OF_FRAMES 30.0
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
+
 int main()
 {
     if(!al_init())
@@ -16,7 +20,7 @@ int main()
         return 1;
     }
 
-    ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0);
+    ALLEGRO_TIMER* timer = al_create_timer(1.0 / NUMBER_OF_FRAMES);
     if(!timer)
     {
         printf("couldn't initialize timer\n");
@@ -30,7 +34,7 @@ int main()
         return 1;
     }
 
-    ALLEGRO_DISPLAY* disp = al_create_display(640, 480);
+    ALLEGRO_DISPLAY* disp = al_create_display(WINDOW_WIDTH, WINDOW_HEIGHT);
     if(!disp)
     {
         printf("couldn't initialize display\n");

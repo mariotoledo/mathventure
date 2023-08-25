@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_image.h>
 #include "config.h"
+#include "character.h"
 
 int main()
 {
@@ -14,6 +16,11 @@ int main()
     if(!al_install_keyboard())
     {
         printf("couldn't initialize keyboard\n");
+        return 1;
+    }
+
+    if(!al_init_image_addon()) {
+        printf("couldn't initialize image\n");
         return 1;
     }
 
@@ -53,6 +60,8 @@ int main()
     bool redraw = true;
     ALLEGRO_EVENT event;
 
+    initCharacter();
+    
     al_start_timer(timer);
     while(1)
     {
@@ -62,6 +71,7 @@ int main()
         {
             case ALLEGRO_EVENT_TIMER:
                 // game logic
+                updateCharacter();
                 redraw = true;
                 break;
 
@@ -77,6 +87,7 @@ int main()
         if(redraw && al_is_event_queue_empty(queue))
         {
             al_clear_to_color(al_map_rgb(0, 0, 0));
+            drawCharacter();
             al_flip_display();
 
             redraw = false;

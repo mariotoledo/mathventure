@@ -22,6 +22,7 @@ $(EXECUTABLE_NAME): $(OBJECT_FILES)
 	$(CC) $^ -o $(EXECUTABLE_NAME) $(LIBS)
 
 obj/%.o: src/%.c
+	echo "here"
 	@mkdir -p obj
 	$(CC) $(CFLAGS) -o $@ -c $<
 

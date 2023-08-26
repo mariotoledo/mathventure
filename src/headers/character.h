@@ -5,8 +5,6 @@ struct Character {
     int y;
     int width;
     int height;
+    ALLEGRO_BITMAP *sprite;
+    int currentFrame;
 };
-
-void initCharacter(void);
-void updateCharacter(void);
-void drawCharacter(void);

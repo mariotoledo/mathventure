@@ -2,8 +2,24 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_image.h>
-#include "config.h"
-#include "character.h"
+#include "headers/config.h"
+#include "headers/deviceDisplay.h"
+#include "headers/hero.h"
+
+struct DeviceDisplay getWindowSize() {
+    ALLEGRO_MONITOR_INFO monitorInfo;
+
+    al_get_monitor_info(0, &monitorInfo);
+
+    struct DeviceDisplay deviceDisplay;
+
+    deviceDisplay.width = monitorInfo.x2 - monitorInfo.x1;
+    deviceDisplay.height = monitorInfo.y2 - monitorInfo.y1;
+
+    al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
+
+    return deviceDisplay;
+}
 
 int main()
 {
@@ -38,7 +54,8 @@ int main()
         return 1;
     }
 
-    ALLEGRO_DISPLAY* disp = al_create_display(WINDOW_WIDTH, WINDOW_HEIGHT);
+    struct DeviceDisplay deviceDisplay = getWindowSize();
+    ALLEGRO_DISPLAY* disp = al_create_display(deviceDisplay.width, deviceDisplay.height);
     if(!disp)
     {
         printf("couldn't initialize display\n");
@@ -60,7 +77,7 @@ int main()
     bool redraw = true;
     ALLEGRO_EVENT event;
 
-    initCharacter();
+    initHero(0, 0);
     
     al_start_timer(timer);
     while(1)
@@ -71,7 +88,7 @@ int main()
         {
             case ALLEGRO_EVENT_TIMER:
                 // game logic
-                updateCharacter();
+                updateHero();
                 redraw = true;
                 break;
 
@@ -87,7 +104,7 @@ int main()
         if(redraw && al_is_event_queue_empty(queue))
         {
             al_clear_to_color(al_map_rgb(0, 0, 0));
-            drawCharacter();
+            drawHero();
             al_flip_display();
 
             redraw = false;

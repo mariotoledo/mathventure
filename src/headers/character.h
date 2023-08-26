@@ -1,10 +1,12 @@
 #include <allegro5/allegro.h>
+#include "common/point.h"
+#include "common/size.h"
+#include "common/scale.h"
 
 struct Character {
-    int x;
-    int y;
-    int width;
-    int height;
+    struct Point position;
+    struct Size size;
     ALLEGRO_BITMAP *sprite;
     int currentFrame;
+    struct Scale scale;
 };

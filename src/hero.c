@@ -5,13 +5,14 @@
 
 struct Character character;
 
-void initHero(int x, int y) {
+void initHero(int x, int y, struct Scale scale) {
     character.sprite = al_load_bitmap("./assets/hero.png");
-    character.x = x;
-    character.y = y;
+    character.position.x = x;
+    character.position.y = y;
     character.currentFrame = 0;
-    character.width = SPRITE_WIDTH;
-    character.height = SPRITE_HEIGHT;
+    character.size.width = SPRITE_WIDTH;
+    character.size.height = SPRITE_HEIGHT;
+    character.scale = scale;
 }
 
 void updateHero(void) {
@@ -23,14 +24,19 @@ void updateHero(void) {
 }
 
 void drawHero(void) {
-    al_draw_bitmap_region(
+    al_draw_tinted_scaled_rotated_bitmap_region(
         character.sprite, 
-        character.currentFrame * character.width, 
+        character.currentFrame * character.size.width, 
         0, 
-        character.width, 
-        character.height, 
-        character.x, 
-        character.y, 
-        0
+        character.size.width, 
+        character.size.height, 
+        al_map_rgb(255, 255, 255),
+        0,
+        0,
+        character.position.x, 
+        character.position.y, 
+        character.scale.x,
+        character.scale.y,
+        0, 0
     );
 }

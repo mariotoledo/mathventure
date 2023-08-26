@@ -3,7 +3,8 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_image.h>
 #include "headers/config.h"
-#include "headers/deviceDisplay.h"
+#include "headers/common/deviceDisplay.h"
+#include "headers/common/scale.h"
 #include "headers/hero.h"
 
 struct DeviceDisplay getWindowSize() {
@@ -56,6 +57,7 @@ int main()
 
     struct DeviceDisplay deviceDisplay = getWindowSize();
     ALLEGRO_DISPLAY* disp = al_create_display(deviceDisplay.width, deviceDisplay.height);
+
     if(!disp)
     {
         printf("couldn't initialize display\n");
@@ -77,7 +79,11 @@ int main()
     bool redraw = true;
     ALLEGRO_EVENT event;
 
-    initHero(0, 0);
+    struct Scale displayScale;
+    displayScale.x = deviceDisplay.width / WINDOW_WIDTH;
+    displayScale.y = deviceDisplay.width / WINDOW_HEIGHT;
+
+    initHero(0, 0, displayScale);
     
     al_start_timer(timer);
     while(1)
@@ -103,7 +109,7 @@ int main()
 
         if(redraw && al_is_event_queue_empty(queue))
         {
-            al_clear_to_color(al_map_rgb(0, 0, 0));
+            al_clear_to_color(al_map_rgb(255, 0, 0));
             drawHero();
             al_flip_display();
 

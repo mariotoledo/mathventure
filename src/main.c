@@ -94,7 +94,7 @@ int main()
         {
             case ALLEGRO_EVENT_TIMER:
                 // game logic
-                updateHero();
+                updateHero(event.timer.count);
                 redraw = true;
                 break;
 

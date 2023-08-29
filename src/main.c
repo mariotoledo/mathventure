@@ -99,6 +99,21 @@ int main()
                 break;
 
             case ALLEGRO_EVENT_KEY_DOWN:
+                switch(event.keyboard.keycode) {
+                    case ALLEGRO_KEY_A:
+                        setHeroState(HERO_ATTACK1);
+                        break;
+                    case ALLEGRO_KEY_S:
+                        setHeroState(HERO_HURT);
+                        break;
+                    case ALLEGRO_KEY_D:
+                        setHeroState(HERO_DEAD);
+                        break;
+                    case ALLEGRO_KEY_X:
+                        done = true;
+                        break;
+                }
+                break;
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 done = true;
                 break;

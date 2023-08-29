@@ -17,16 +17,23 @@ void initHero(int x, int y, struct Scale scale) {
     character.size.width = SPRITE_WIDTH;
     character.size.height = SPRITE_HEIGHT;
     character.scale = scale;
-    currentState = IDLE;
+    currentState = HERO_IDLE;
 }
 
 void updateHero(long long int timer) {
+    //making sure the frame does not updates when the player is dead
+    if(currentState == HERO_DEAD && character.currentFrame == animationFrameCount[(int)HERO_DEAD] - 1) {
+        return;
+    }
+
     if(timer % animationSpeed == 0) {
         character.currentFrame += 1;
     }
 
     if(character.currentFrame > animationFrameCount[(int)currentState] - 1) {
         character.currentFrame = 0;
+        //in any case, besides being dead, the player goes back to idle state
+        currentState = HERO_IDLE;
     }
 }
 
@@ -46,4 +53,9 @@ void drawHero(void) {
         character.scale.y,
         0, 0
     );
+}
+
+void setHeroState(enum HeroStates newState) {
+    character.currentFrame = 0;
+    currentState = newState;
 }

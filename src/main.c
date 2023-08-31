@@ -5,21 +5,21 @@
 #include "headers/config.h"
 #include "headers/common/device_display.h"
 #include "headers/common/scale.h"
-#include "headers/hero.h"
+#include "headers/game_controller.h"
 
 struct DeviceDisplay getWindowSize() {
-    ALLEGRO_MONITOR_INFO monitorInfo;
+    ALLEGRO_MONITOR_INFO monitor_info;
 
-    al_get_monitor_info(0, &monitorInfo);
+    al_get_monitor_info(0, &monitor_info);
 
-    struct DeviceDisplay deviceDisplay;
+    struct DeviceDisplay device_display;
 
-    deviceDisplay.width = monitorInfo.x2 - monitorInfo.x1;
-    deviceDisplay.height = monitorInfo.y2 - monitorInfo.y1;
+    device_display.width = monitor_info.x2 - monitor_info.x1;
+    device_display.height = monitor_info.y2 - monitor_info.y1;
 
     al_set_new_display_flags(ALLEGRO_FULLSCREEN_WINDOW);
 
-    return deviceDisplay;
+    return device_display;
 }
 
 int main()
@@ -55,8 +55,8 @@ int main()
         return 1;
     }
 
-    struct DeviceDisplay deviceDisplay = getWindowSize();
-    ALLEGRO_DISPLAY* disp = al_create_display(deviceDisplay.width, deviceDisplay.height);
+    struct DeviceDisplay device_display = getWindowSize();
+    ALLEGRO_DISPLAY* disp = al_create_display(device_display.width, device_display.height);
 
     if(!disp)
     {
@@ -79,12 +79,12 @@ int main()
     bool redraw = true;
     ALLEGRO_EVENT event;
 
-    struct Scale displayScale;
-    displayScale.x = deviceDisplay.width / WINDOW_WIDTH;
-    displayScale.y = deviceDisplay.width / WINDOW_HEIGHT;
+    struct Scale display_scale;
+    display_scale.x = device_display.width / WINDOW_WIDTH;
+    display_scale.y = device_display.width / WINDOW_HEIGHT;
 
-    init_hero(0, 0, displayScale);
-    
+    init_game(display_scale);
+
     al_start_timer(timer);
     while(1)
     {
@@ -93,26 +93,12 @@ int main()
         switch(event.type)
         {
             case ALLEGRO_EVENT_TIMER:
-                // game logic
-                update_hero(event.timer.count);
+                update_game(event.timer.count);
                 redraw = true;
                 break;
 
             case ALLEGRO_EVENT_KEY_DOWN:
-                switch(event.keyboard.keycode) {
-                    case ALLEGRO_KEY_A:
-                        set_hero_state(HERO_ATTACK1);
-                        break;
-                    case ALLEGRO_KEY_S:
-                        set_hero_state(HERO_HURT);
-                        break;
-                    case ALLEGRO_KEY_D:
-                        set_hero_state(HERO_DEAD);
-                        break;
-                    case ALLEGRO_KEY_X:
-                        done = true;
-                        break;
-                }
+                on_key_press(event.keyboard.keycode);
                 break;
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 done = true;
@@ -125,7 +111,7 @@ int main()
         if(redraw && al_is_event_queue_empty(queue))
         {
             al_clear_to_color(al_map_rgb(255, 0, 0));
-            draw_hero();
+            draw_game();
             al_flip_display();
 
             redraw = false;

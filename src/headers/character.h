@@ -1,3 +1,6 @@
+#ifndef __CHARACTER_H__
+#define __CHARACTER_H__
+
 #include <allegro5/allegro.h>
 #include "common/point.h"
 #include "common/size.h"
@@ -10,3 +13,5 @@ struct Character {
     int current_frame;
     struct Scale scale;
 };
+
+#endif

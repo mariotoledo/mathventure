@@ -2,6 +2,13 @@
 #include "headers/hero.h"
 #include <allegro5/allegro5.h>
 
+enum GameStates {
+    GAME_PRESS_START,
+    GAME_TUTORIAL,
+    GAME_RUNNING,
+    GAME_GAME_OVER,
+} current_state;
+
 void init_game(struct Scale display_scale) {
     init_hero(0, 0, display_scale);
 }

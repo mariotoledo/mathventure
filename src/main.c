@@ -3,7 +3,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_image.h>
 #include "headers/config.h"
-#include "headers/common/deviceDisplay.h"
+#include "headers/common/device_display.h"
 #include "headers/common/scale.h"
 #include "headers/hero.h"
 
@@ -83,7 +83,7 @@ int main()
     displayScale.x = deviceDisplay.width / WINDOW_WIDTH;
     displayScale.y = deviceDisplay.width / WINDOW_HEIGHT;
 
-    initHero(0, 0, displayScale);
+    init_hero(0, 0, displayScale);
     
     al_start_timer(timer);
     while(1)
@@ -94,20 +94,20 @@ int main()
         {
             case ALLEGRO_EVENT_TIMER:
                 // game logic
-                updateHero(event.timer.count);
+                update_hero(event.timer.count);
                 redraw = true;
                 break;
 
             case ALLEGRO_EVENT_KEY_DOWN:
                 switch(event.keyboard.keycode) {
                     case ALLEGRO_KEY_A:
-                        setHeroState(HERO_ATTACK1);
+                        set_hero_state(HERO_ATTACK1);
                         break;
                     case ALLEGRO_KEY_S:
-                        setHeroState(HERO_HURT);
+                        set_hero_state(HERO_HURT);
                         break;
                     case ALLEGRO_KEY_D:
-                        setHeroState(HERO_DEAD);
+                        set_hero_state(HERO_DEAD);
                         break;
                     case ALLEGRO_KEY_X:
                         done = true;
@@ -125,7 +125,7 @@ int main()
         if(redraw && al_is_event_queue_empty(queue))
         {
             al_clear_to_color(al_map_rgb(255, 0, 0));
-            drawHero();
+            draw_hero();
             al_flip_display();
 
             redraw = false;

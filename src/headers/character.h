@@ -7,6 +7,6 @@ struct Character {
     struct Point position;
     struct Size size;
     ALLEGRO_BITMAP *sprite;
-    int currentFrame;
+    int current_frame;
     struct Scale scale;
 };

@@ -1,5 +1,5 @@
 #include <allegro5/allegro.h>
-#include "headers/press_start_state.h"
+#include "headers/press_start.h"
 #include "headers/common/point.h"
 
 struct Point position;

@@ -11,8 +11,8 @@ enum HeroStates current_hero_state;
 
 void init_hero(int x, int y, struct Scale scale) {
     hero_character.sprite = al_load_bitmap("./assets/hero.png");
-    hero_character.position.x = x;
-    hero_character.position.y = y;
+    hero_character.position.x = x - (SPRITE_WIDTH);
+    hero_character.position.y = y - (SPRITE_HEIGHT);
     hero_character.current_frame = 0;
     hero_character.size.width = SPRITE_WIDTH;
     hero_character.size.height = SPRITE_HEIGHT;

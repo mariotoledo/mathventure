@@ -12,7 +12,7 @@ enum HeroStates {
     HERO_IDLE2,
     HERO_HURT,
     HERO_DEAD
-} animations;
+};
 
 void init_hero(int x, int y, struct Scale scale);
 void update_hero(long long int timer);

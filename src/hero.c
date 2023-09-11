@@ -1,9 +1,7 @@
 #include <allegro5/allegro.h>
-#include "headers/character.h"
 #include "headers/hero.h"
 #include "headers/config.h"
 
-struct Character hero_character;
 int animation_speed = (int)(NUMBER_OF_FRAMES / ANIMATION_SPEED);
 
 int hero_animation_frame_count[] = {8, 8, 8, 8, 6, 3, 4, 3, 3, 3};
@@ -32,8 +30,11 @@ void update_hero(long long int timer) {
 
     if(hero_character.current_frame > hero_animation_frame_count[(int)current_hero_state] - 1) {
         hero_character.current_frame = 0;
-        //in any case, besides being dead, the player goes back to idle state
-        current_hero_state = HERO_IDLE;
+        
+        if(current_hero_state != HERO_WALK &&
+            current_hero_state != HERO_RUN) {
+            current_hero_state = HERO_IDLE;
+        }            
     }
 }
 

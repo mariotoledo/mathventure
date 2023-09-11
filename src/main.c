@@ -5,7 +5,7 @@
 #include "headers/config.h"
 #include "headers/common/device_display.h"
 #include "headers/common/scale.h"
-#include "headers/game_controller.h"
+#include "headers/game.h"
 
 struct DeviceDisplay getWindowSize() {
     ALLEGRO_MONITOR_INFO monitor_info;

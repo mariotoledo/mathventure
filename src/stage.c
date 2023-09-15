@@ -1,6 +1,7 @@
 #include "headers/stage.h"
 #include "headers/hero.h"
 #include "headers/config.h"
+#include "headers/background.h"
 #include <allegro5/allegro5.h>
 
 enum StageStates {
@@ -14,21 +15,23 @@ enum StageStates {
 int hero_position;
 
 void init_stage(struct Scale display_scale, int window_width, int window_height, ALLEGRO_FONT* font) {
-    init_hero(-SPRITE_WIDTH, window_height / 2, display_scale);
+    init_background(window_width, window_height, display_scale);
+    init_hero(-SPRITE_WIDTH, window_height / 3, display_scale);
 
-    hero_position = window_width / 4;
+    hero_position = window_width / 6;
 
     current_stage_state = STAGE_STARTING;
     set_hero_state(HERO_RUN);
 }
 
 void update_stage(long long int time_tick) {
+    update_background(time_tick);
     update_hero(time_tick);
 
     switch(current_stage_state) {
         case STAGE_STARTING:
             if(hero_character.position.x < hero_position) {
-                hero_character.position.x += 10;
+                hero_character.position.x += 20;
             } else {
                 current_stage_state = STAGE_IDLE;
                 set_hero_state(HERO_IDLE);
@@ -44,6 +47,7 @@ void update_stage(long long int time_tick) {
 }
 
 void draw_stage() {
+    draw_background();
     draw_hero();
 
     switch(current_stage_state) {

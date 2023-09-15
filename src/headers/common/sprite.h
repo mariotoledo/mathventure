@@ -1,12 +1,12 @@
-#ifndef __CHARACTER_H__
-#define __CHARACTER_H__
+#ifndef __SPRITE_H__
+#define __SPRITE_H__
 
 #include <allegro5/allegro.h>
-#include "common/point.h"
-#include "common/size.h"
-#include "common/scale.h"
+#include "point.h"
+#include "size.h"
+#include "scale.h"
 
-struct Character {
+struct Sprite {
     struct Point position;
     struct Size size;
     ALLEGRO_BITMAP *sprite;

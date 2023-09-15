@@ -2,8 +2,8 @@
 #define __DEVICE_DISPLAY_H__
 
 struct DeviceDisplay {
-    int width;
-    int height;
+    float width;
+    float height;
     int dpi;
 };
 

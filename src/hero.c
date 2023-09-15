@@ -41,7 +41,7 @@ void update_hero(long long int timer) {
 void draw_hero(void) {
     al_draw_tinted_scaled_rotated_bitmap_region(
         hero_character.sprite, 
-        hero_character.current_frame * hero_character.size.width, 
+        hero_character.current_frame * hero_character.size.width,   
         (int)current_hero_state * hero_character.size.height, 
         hero_character.size.width, 
         hero_character.size.height, 
@@ -50,8 +50,8 @@ void draw_hero(void) {
         0,
         hero_character.position.x, 
         hero_character.position.y, 
-        hero_character.scale.x + 1,
-        hero_character.scale.y,
+        hero_character.scale.x * SPRITE_SCALE,
+        hero_character.scale.y * SPRITE_SCALE,
         0, 0
     );
 }

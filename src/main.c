@@ -81,7 +81,7 @@ int main()
 
     struct Scale display_scale;
     display_scale.x = device_display.width / WINDOW_WIDTH;
-    display_scale.y = device_display.width / WINDOW_HEIGHT;
+    display_scale.y = device_display.height / WINDOW_HEIGHT;
 
     init_game(display_scale, device_display.width, device_display.height, font);
 

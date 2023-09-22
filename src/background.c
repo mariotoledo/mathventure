@@ -11,8 +11,7 @@ void init_background(int window_width, int window_height, struct Scale scale) {
     background.scale = scale;
 }
 
-void update_background(long long int timer) {
-}
+void update_background(long long int timer) {}
 
 void draw_background(void) {
     al_draw_tinted_scaled_rotated_bitmap_region(

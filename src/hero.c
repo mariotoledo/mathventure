@@ -2,7 +2,7 @@
 #include "headers/hero.h"
 #include "headers/config.h"
 
-int animation_speed = (int)(NUMBER_OF_FRAMES / ANIMATION_SPEED);
+int hero_animation_speed = (int)(NUMBER_OF_FRAMES / ANIMATION_SPEED);
 
 int hero_animation_frame_count[] = {8, 8, 8, 8, 6, 3, 4, 3, 3, 3};
 enum HeroStates current_hero_state;
@@ -24,7 +24,7 @@ void update_hero(long long int timer) {
         return;
     }
 
-    if(timer % animation_speed == 0) {
+    if(timer % hero_animation_speed == 0) {
         hero_character.current_frame += 1;
     }
 

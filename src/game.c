@@ -69,7 +69,7 @@ void change_state(enum GameStates newState) {
             init_press_start(game_window_width, game_window_height, game_display_scale, game_font);
             break;
         case GAME_TUTORIAL:
-            init_tutorial(game_window_width / 2, game_window_height / 2, game_font);
+            init_tutorial(game_window_width, game_window_height, game_display_scale, game_font);
             break;
         case GAME_RUNNING:
             init_stage(game_display_scale, game_window_width, game_window_height, game_font);

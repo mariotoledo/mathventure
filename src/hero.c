@@ -8,7 +8,7 @@ int hero_animation_frame_count[] = {8, 8, 8, 8, 6, 3, 4, 3, 3, 3};
 enum HeroStates current_hero_state;
 
 void init_hero(int x, int y, struct Scale scale) {
-    hero_character.sprite = al_load_bitmap("./assets/hero.png");
+    hero_character.sprite = al_load_bitmap("./assets/spritesheets/hero.png");
     hero_character.position.x = x - (SPRITE_WIDTH);
     hero_character.position.y = y - (SPRITE_HEIGHT);
     hero_character.current_frame = 0;

@@ -5,7 +5,7 @@
 
 struct Sprite background;
 
-void init_background(int window_width, int window_height, struct Scale scale);
+void init_background(int window_width, int window_height, struct Scale scale, char stageName[]);
 void update_background(long long int timer);
 void draw_background(void);
 

@@ -17,7 +17,7 @@ int hero_position;
 int enemy_position;
 
 void init_stage(struct Scale display_scale, int window_width, int window_height, ALLEGRO_FONT* font) {
-    init_background(window_width, window_height, display_scale);
+    init_background(window_width, window_height, display_scale, "stage1");
     init_hero(-SPRITE_WIDTH, window_height / 3, display_scale);
 
     enemy_position = (window_width * 4) / 6;

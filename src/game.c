@@ -15,12 +15,15 @@ enum GameStates {
 int game_window_width;
 int game_window_height;
 
+struct Scale game_display_scale;
+ALLEGRO_FONT* game_font;
+
 void init_game(struct Scale display_scale, int window_width, int window_height, ALLEGRO_FONT* font) {
-    init_press_start(window_width / 2, window_height / 2, font);
-    init_tutorial(window_width / 2, window_height / 2, font);
-    init_stage(display_scale, window_width, window_height, font);
+    init_press_start(window_width, window_height, display_scale, font);
 
     current_game_state = GAME_PRESS_START;
+    game_display_scale = display_scale;
+    game_font = font;
 
     game_window_width = window_width;
     game_window_height = window_height;
@@ -60,6 +63,22 @@ void draw_game() {
     }
 }
 
+void change_state(enum GameStates newState) {
+    switch(newState) {
+        case GAME_PRESS_START:
+            init_press_start(game_window_width, game_window_height, game_display_scale, game_font);
+            break;
+        case GAME_TUTORIAL:
+            init_tutorial(game_window_width / 2, game_window_height / 2, game_font);
+            break;
+        case GAME_RUNNING:
+            init_stage(game_display_scale, game_window_width, game_window_height, game_font);
+            break;
+    }
+
+    current_game_state = newState;
+}
+
 void on_key_press(int keycode) {
     if(current_game_state == GAME_RUNNING) {
         on_key_press_stage(keycode);
@@ -67,11 +86,11 @@ void on_key_press(int keycode) {
         switch(keycode) {
             case ALLEGRO_KEY_ENTER:
                 if(current_game_state == GAME_PRESS_START) {
-                    current_game_state = GAME_TUTORIAL;
+                    change_state(GAME_TUTORIAL);
                 } else if (current_game_state == GAME_TUTORIAL) {
-                    current_game_state = GAME_RUNNING;
+                    change_state(GAME_RUNNING);
                 } else if (current_game_state == GAME_OVER) {
-                    current_game_state = GAME_PRESS_START;
+                    change_state(GAME_PRESS_START);
                 }
                 break;
         }

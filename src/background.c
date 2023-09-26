@@ -1,9 +1,14 @@
 #include <allegro5/allegro.h>
 #include "headers/background.h"
 #include "headers/config.h"
+#include <string.h>
 
-void init_background(int window_width, int window_height, struct Scale scale) {
-    background.sprite = al_load_bitmap("./assets/forest.png");
+void init_background(int window_width, int window_height, struct Scale scale, char stageName[]) {
+    char stageDestination[50] = "./assets/backgrounds/";
+    strcat(stageDestination, stageName);
+    strcat(stageDestination, ".png");
+
+    background.sprite = al_load_bitmap(stageDestination);
     background.position.x = 0;
     background.position.y = 0;
     background.size.width = window_width * scale.x;

@@ -8,7 +8,7 @@ int enemy_animation_frame_count[] = {8, 8, 7, 10, 13, 4, 4, 5, 6, 3};
 enum EnemyStates current_enemy_state;
 
 void init_enemy(int x, int y, struct Scale scale) {
-    enemy_character.sprite = al_load_bitmap("./assets/green_slime.png");
+    enemy_character.sprite = al_load_bitmap("./assets/spritesheets/green_slime.png");
     enemy_character.position.x = x - (SPRITE_WIDTH);
     enemy_character.position.y = y - (SPRITE_HEIGHT);
     enemy_character.current_frame = 0;

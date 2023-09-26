@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include "headers/config.h"
 #include "headers/common/device_display.h"
 #include "headers/common/scale.h"
 #include "headers/game.h"
 
-struct DeviceDisplay getWindowSize() {
+struct DeviceDisplay get_window_size() {
     ALLEGRO_MONITOR_INFO monitor_info;
 
     al_get_monitor_info(0, &monitor_info);
@@ -55,7 +57,7 @@ int main()
         return 1;
     }
 
-    struct DeviceDisplay device_display = getWindowSize();
+    struct DeviceDisplay device_display = get_window_size();
     ALLEGRO_DISPLAY* disp = al_create_display(device_display.width, device_display.height);
 
     if(!disp)
@@ -64,7 +66,21 @@ int main()
         return 1;
     }
 
-    ALLEGRO_FONT* font = al_create_builtin_font();
+    struct Scale display_scale;
+    display_scale.x = device_display.width / WINDOW_WIDTH;
+    display_scale.y = device_display.height / WINDOW_HEIGHT;
+
+    if(!al_init_font_addon()) {
+        printf("couldn't initialize font addon\n");
+        return 1;
+    }
+
+    if(!al_init_ttf_addon()) {
+        printf("couldn't initialize font addon\n");
+        return 1;
+    }
+
+    ALLEGRO_FONT* font = al_load_font("./assets/fonts/Kenney Mini Square.ttf", 24 * display_scale.x, 0);
     if(!font)
     {
         printf("couldn't initialize font\n");
@@ -78,10 +94,6 @@ int main()
     bool done = false;
     bool redraw = true;
     ALLEGRO_EVENT event;
-
-    struct Scale display_scale;
-    display_scale.x = device_display.width / WINDOW_WIDTH;
-    display_scale.y = device_display.height / WINDOW_HEIGHT;
 
     init_game(display_scale, device_display.width, device_display.height, font);
 

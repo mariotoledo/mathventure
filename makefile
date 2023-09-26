@@ -4,6 +4,7 @@ ALLEGRO_LIBS := allegro-5 \
 	allegro_main-5 \
 	allegro_image-5 \
 	allegro_font-5 \
+	allegro_ttf-5 \
 	allegro_audio-5 \
 	allegro_acodec-5 \
 	allegro_primitives-5
@@ -36,4 +37,4 @@ run: $(EXECUTABLE_NAME)
 -include $(DEPENDENCY_FILES)
 
 #gcc src/*.c -o main $(pkg-config allegro-5 allegro_main-5 allegro_font-5 --libs --cflags)
-#gcc obj/main.o -o game `/opt/local/bin/pkg-config --libs allegro-5 allegro_main-5 allegro_image-5 allegro_font-5 allegro_audio-5 allegro_acodec-5 allegro_primitives-5`
+#gcc obj/main.o -o game `/opt/local/bin/pkg-config --libs allegro-5 allegro_main-5 allegro_image-5 allegro_font-5 allegro_ttf-5 allegro_audio-5 allegro_acodec-5 allegro_primitives-5`

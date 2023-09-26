@@ -11,6 +11,7 @@ ALLEGRO_FONT* font;
 struct Sprite logo;
 
 char backgrounds[8][20] = {"stage1", "stage2", "stage3", "stage4", "stage5", "stage6", "stage7", "stage8"};
+char press_start_text[] = "PRESS START";
 
 void init_logo(int window_width, int window_height, struct Scale display_scale) {
     logo.sprite = al_load_bitmap("./assets/logo.png");
@@ -25,7 +26,10 @@ void init_press_start(int window_width, int window_height, struct Scale display_
     int backgroundIndex = rand() % 8;
     
     init_background(window_width, window_height, display_scale, backgrounds[backgroundIndex]);
-    press_start_position.x = window_width / 2;
+
+    int press_start_text_width = al_get_text_width(_font, press_start_text);
+
+    press_start_position.x = (window_width - press_start_text_width) / 2;
     press_start_position.y = window_height / 2;
     font = _font;
 
@@ -57,5 +61,5 @@ void update_press_start(long long int timer) {
 void draw_press_start() {
     draw_background();
     draw_logo();
-    al_draw_text(font, al_map_rgb(255, 255, 255), press_start_position.x, press_start_position.y, 0, "PRESS START");
+    al_draw_text(font, al_map_rgb(255, 255, 255), press_start_position.x, press_start_position.y, 0, press_start_text);
 }

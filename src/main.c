@@ -87,6 +87,11 @@ int main()
         return 1;
     }
 
+    if(!al_init_primitives_addon()) {
+        printf("couldn't initialize primitives addon\n");
+        return 1;
+    }
+
     al_set_blender(ALLEGRO_ADD, ALLEGRO_ALPHA, ALLEGRO_INVERSE_ALPHA);
 
     al_register_event_source(queue, al_get_keyboard_event_source());

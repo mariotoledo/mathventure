@@ -8,5 +8,6 @@
 #define SPRITE_WIDTH 128
 #define SPRITE_HEIGHT 128
 #define SPRITE_SCALE 2.5
+#define FADE_SPEED 10
 
 #endif

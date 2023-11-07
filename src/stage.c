@@ -55,6 +55,10 @@ void update_stage(long long int time_tick) {
                 hero_character.position.x += (10 * current_display_scale.x);
             } else if(last_key_pressed == ALLEGRO_KEY_LEFT) {
                 hero_character.position.x -= (10 * current_display_scale.x);
+            } else if(last_key_pressed == ALLEGRO_KEY_UP) {
+                hero_character.position.y -= (10 * current_display_scale.x);
+            } else if(last_key_pressed == ALLEGRO_KEY_DOWN) {
+                hero_character.position.y += (10 * current_display_scale.x);
             }
             break;
         case STAGE_HERO_ATTACK:
@@ -97,6 +101,16 @@ void on_key_press_stage(int keycode) {
             set_hero_state(HERO_DEAD);
             last_key_pressed = keycode;
             break;
+        case ALLEGRO_KEY_UP:
+            set_hero_state(HERO_RUN);
+            last_key_pressed = keycode;
+            hero_character.position.y -= (10 * current_display_scale.x);
+            break;
+        case ALLEGRO_KEY_DOWN:
+            set_hero_state(HERO_RUN);
+            last_key_pressed = keycode;
+            hero_character.position.y += (10 * current_display_scale.x);
+            break;
         case ALLEGRO_KEY_RIGHT:
             set_hero_state(HERO_RUN);
             set_hero_direction(DIRECTION_RIGHT);
@@ -108,9 +122,6 @@ void on_key_press_stage(int keycode) {
             set_hero_direction(DIRECTION_LEFT);
             last_key_pressed = keycode;
             hero_character.position.x -= (10 * current_display_scale.x);
-            break;
-        default:
-            set_hero_state(HERO_IDLE);
             break;
     }
 }

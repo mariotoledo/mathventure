@@ -22,5 +22,7 @@ void init_hero(int x, int y, struct Scale scale);
 void update_hero(long long int timer);
 void draw_hero(void);
 void set_hero_state(enum HeroStates new_state);
+void set_hero_state(enum HeroStates new_state);
+void set_hero_direction(enum SpriteDirection new_direction);
 
 #endif

@@ -115,9 +115,11 @@ int main()
                 update_game(event.timer.count);
                 redraw = true;
                 break;
-
             case ALLEGRO_EVENT_KEY_DOWN:
                 on_key_press(event.keyboard.keycode);
+                break;
+            case ALLEGRO_EVENT_KEY_UP:
+                on_key_up();
                 break;
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 done = true;

@@ -119,6 +119,12 @@ void change_state(enum GameStates newState) {
     to_change_state = newState;
 }
 
+void on_key_up() {
+    if(current_game_state == GAME_RUNNING) {
+        on_key_up_stage();
+    }
+}
+
 void on_key_press(int keycode) {
     if(current_fade_state != GAME_FADE_IN_FINISH) return;
 

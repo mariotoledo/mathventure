@@ -8,5 +8,6 @@ void init_game(struct Scale scale, int window_width, int window_height, ALLEGRO_
 void update_game(long long int timer);
 void draw_game();
 void on_key_press(int keycode);
+void on_key_up();
 
 #endif

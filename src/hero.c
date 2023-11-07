@@ -12,6 +12,7 @@ void init_hero(int x, int y, struct Scale scale) {
     hero_character.position.x = x - (SPRITE_WIDTH);
     hero_character.position.y = y - (SPRITE_HEIGHT);
     hero_character.current_frame = 0;
+    hero_character.direction = DIRECTION_RIGHT;
     hero_character.size.width = SPRITE_WIDTH;
     hero_character.size.height = SPRITE_HEIGHT;
     hero_character.scale = scale;
@@ -39,6 +40,13 @@ void update_hero(long long int timer) {
 }
 
 void draw_hero(void) {
+    int position_x = hero_character.position.x;
+
+    //compensating scale diff when moving left
+    if(hero_character.direction == DIRECTION_LEFT) {
+        position_x += hero_character.scale.x * SPRITE_SCALE * hero_character.size.width; 
+    }
+
     al_draw_tinted_scaled_rotated_bitmap_region(
         hero_character.sprite, 
         hero_character.current_frame * hero_character.size.width,   
@@ -48,12 +56,16 @@ void draw_hero(void) {
         al_map_rgb(255, 255, 255),
         0,
         0,
-        hero_character.position.x, 
+        position_x, 
         hero_character.position.y, 
-        hero_character.scale.x * SPRITE_SCALE,
+        hero_character.scale.x * SPRITE_SCALE * hero_character.direction,
         hero_character.scale.y * SPRITE_SCALE,
         0, 0
     );
+}
+
+void set_hero_direction(enum SpriteDirection new_direction) {
+    hero_character.direction = new_direction;
 }
 
 void set_hero_state(enum HeroStates new_state) {

@@ -8,5 +8,6 @@ void init_stage(struct Scale scale, int window_width, int window_height, ALLEGRO
 void update_stage(long long int timer);
 void draw_stage();
 void on_key_press_stage(int keycode);
+void on_key_up_stage();
 
 #endif

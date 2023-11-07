@@ -117,4 +117,5 @@ void on_key_press_stage(int keycode) {
 
 void on_key_up_stage() {
     last_key_pressed = 0;
+    set_instant_idle();
 }

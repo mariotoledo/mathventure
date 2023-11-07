@@ -72,3 +72,9 @@ void set_hero_state(enum HeroStates new_state) {
     hero_character.current_frame = 0;
     current_hero_state = new_state;
 }
+
+void set_instant_idle() {
+    if(current_hero_state == HERO_WALK || current_hero_state == HERO_RUN) {
+        set_hero_state(HERO_IDLE);
+    }
+}

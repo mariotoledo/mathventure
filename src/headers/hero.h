@@ -24,5 +24,6 @@ void draw_hero(void);
 void set_hero_state(enum HeroStates new_state);
 void set_hero_state(enum HeroStates new_state);
 void set_hero_direction(enum SpriteDirection new_direction);
+void set_instant_idle();
 
 #endif
